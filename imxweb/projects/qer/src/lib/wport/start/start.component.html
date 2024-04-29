@@ -68,6 +68,21 @@
   </div>
   <div [ngClass]="{ hidden: !viewReady, 'imx-flexible-tile-row': true}">
     <imx-icon-tile
+    data-imx-identifier="start-tile-support-information"
+    [caption]="'#LDS# Custom form' | translate"
+    [subtitle]="'#LDS#Go to the Custom form page.' | translate"
+    [identifier]="'go-to-custom-form'"
+    *ngIf="ShowCustomForm()"
+  >
+    <ng-template #ActionTemplate>
+      <button mat-button color="primary" (click)="GoToCustomForm()">
+        <span>{{ '#LDS# Go to Custom form page' | translate }}</span>
+        <eui-icon size="m" icon="forward"></eui-icon>
+      </button>
+    </ng-template>
+  </imx-icon-tile>
+
+    <imx-icon-tile
       *ngIf="viewReady && ShowPasswordTile()"
       data-imx-identifier="start-tile-no-password-query-and-answer-set"
       [caption]="'#LDS#Heading Password Questions' | translate"

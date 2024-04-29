@@ -1,9 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MenuService, MenuItem, ClassloggerService } from 'qbm';
+import { MenuService, MenuItem, ClassloggerService, RouteGuardService } from 'qbm';
 import { Routes, RouterModule } from '@angular/router';
-import { RouteGuardService } from 'qbm';
 import { CustomFormComponent } from './custom-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { TableComponent } from './table/table.component';
+import { PopupComponent } from './popup/popup.component';
 
 const routes: Routes = [
   {
@@ -15,9 +22,16 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [CustomFormComponent],
+  declarations: [CustomFormComponent, TableComponent, PopupComponent],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule, 
+    MatButtonModule,
+    MatTableModule,
+    MatInputModule, 
+    MatSelectModule,
     RouterModule.forRoot(routes)
   ]
 })

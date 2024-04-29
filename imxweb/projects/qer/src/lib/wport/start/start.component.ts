@@ -83,6 +83,14 @@ export class StartComponent implements OnInit {
     return this.projectConfig?.PasswordConfig.VI_MyData_MyPassword_Visibility && !!this.projectConfig?.PasswordConfig.PasswordMgmtUrl;
   }
 
+  public ShowCustomForm(): boolean {
+    return true;
+  }
+
+  public GoToCustomForm(): void {
+    this.router.navigate(['custom-form']);
+  }
+
   public GoToMyPassword(): void {
     this.router.navigate(['profile', 'profile-password-questions']);
   }
