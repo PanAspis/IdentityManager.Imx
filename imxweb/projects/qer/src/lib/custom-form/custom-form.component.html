@@ -1,27 +1,27 @@
 <div *ngIf="!submitted; else table">
   <div class="form-container">
-  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-    <mat-form-field>
-      <mat-label>First name</mat-label>
-      <input matInput ngModel name="firstname" required>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Last name</mat-label>
-      <input matInput ngModel name="lastname" required>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Address</mat-label>
-      <input matInput ngModel name="address">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Email</mat-label>
-      <input matInput ngModel name="email">
-    </mat-form-field>
-    <button mat-raised-button color="primary" type="submit">Submit</button>
-  </form>
-</div>
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <mat-form-field>
+        <mat-label>First name</mat-label>
+        <input matInput ngModel name="firstname" required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Last name</mat-label>
+        <input matInput ngModel name="lastname" required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Address</mat-label>
+        <input matInput ngModel name="address">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput ngModel name="email">
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </form>
+  </div>
 </div>
 <ng-template #table>
-  <ccc-table (popupChange)="handlePopup()"></ccc-table>
+  <ccc-table (popupChange)="handlePopup()" [dataSource]="formDataArray"></ccc-table>
 </ng-template>
-<ccc-popup  *ngIf="showPopup" [firstname]="firstName" [lastname]="lastName" (close)="handlePopup()"></ccc-popup>
+<ccc-popup *ngIf="showPopup" [firstname]="firstName" [lastname]="lastName" (close)="handlePopup()"></ccc-popup>

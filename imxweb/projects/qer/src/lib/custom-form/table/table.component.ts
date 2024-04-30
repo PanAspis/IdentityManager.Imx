@@ -1,5 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { CustomFormService } from '../custom-form.service';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'ccc-table',
@@ -7,19 +6,15 @@ import { CustomFormService } from '../custom-form.service';
   styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements OnInit {
-  dataSource: any[] = [];
-  displayedColumns: string[] = ['firstname', 'lastname', 'address', 'email'];
+  @Input() dataSource: any[];
   @Output() popupChange = new EventEmitter<void>();
+  displayedColumns: string[] = ['firstname', 'lastname', 'address', 'email'];
 
-  constructor(private formDataService: CustomFormService) { }
+  constructor() { }
 
-  ngOnInit(): void {
-    this.dataSource = this.formDataService.formDataList;
-    console.log("table:",this.dataSource) ;
-  }
+  ngOnInit(): void {}
 
   openPopup(){
     this.popupChange.emit();
-
   }
 }

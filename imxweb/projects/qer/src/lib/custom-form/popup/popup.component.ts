@@ -11,8 +11,6 @@ export class PopupComponent {
   @Output() close = new EventEmitter<void>();
 
   onClose() {
-    console.log("close popup");
     this.close.emit();
   }
-  
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { CustomFormService } from './custom-form.service';
 
 @Component({
   selector: 'ccc-custom-form',
@@ -8,34 +7,40 @@ import { CustomFormService } from './custom-form.service';
   styleUrls: ['./custom-form.component.scss']
 })
 export class CustomFormComponent implements OnInit {
+  formDataArray: any[] = [];
   submitted: boolean = false;
   showPopup: boolean = false;
   firstName: string = '';
   lastName: string = '';
   formData: any;
-  constructor(private formDataService: CustomFormService) { }
-  ngOnInit(): void {}
+  constructor() { }
+  ngOnInit(): void {
+    this.loadFormData();
+  }
 
   onSubmit(form: NgForm) {
     if (form.valid) {
       this.formData = form.value;
-      this.formDataService.formDataList.push(this.formData);
+      this.formDataArray.push(this.formData);
       this.firstName = this.formData.firstname;
       this.lastName = this.formData.lastname;
+      this.saveFormData();
 
       this.submitted = true;
       this.showPopup = false;
       form.reset();
     }
   }
-  
-  handlePopup(){
-    this.showPopup = !this.showPopup;
+
+  private saveFormData() {
+    sessionStorage.formDataItem = JSON.stringify(this.formDataArray);
   }
 
-  resetForm(form: NgForm) {
-    form.resetForm();
-    this.submitted = false;
-    this.showPopup = false;
+  private loadFormData() {
+    this.formDataArray = JSON.parse(sessionStorage.formDataItem || '[]');
+  }
+
+  handlePopup() {
+    this.showPopup = !this.showPopup;
   }
 }
